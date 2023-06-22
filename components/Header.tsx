@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import { BellIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid';
+import Link from 'next/link';
 
 const Header = () => {
   return (
@@ -20,7 +22,21 @@ const Header = () => {
           <li className="headerLink">My List</li>
         </ul>
       </div>
-      <div></div>
+
+      <div className="flex items-center space-x-4 text-sm font-light">
+        <MagnifyingGlassIcon className="hidden sm:inline w-6 h-6 " />
+        <p className="hidden lg:inline">Kids</p>
+        <BellIcon className="w-6 h-6" />
+        <Link className="inline-block " href="/account">
+          <Image
+            src="/Netflix-avatar.png"
+            alt="Netflix profile avatar"
+            width={32}
+            height={32}
+            className="cursor-pointer rounded"
+          />
+        </Link>
+      </div>
     </header>
   );
 };
