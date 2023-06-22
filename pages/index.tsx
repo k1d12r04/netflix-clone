@@ -1,3 +1,4 @@
+import Banner from '@/components/Banner';
 import Header from '@/components/Header';
 import type { NextPage } from 'next';
 import Head from 'next/head';
@@ -13,7 +14,7 @@ const Home: NextPage = () => {
       <Header />
 
       <main>
-        {/* Banner */}
+        <Banner />
         <section>
           {/* Row */}
           {/* Row */}
