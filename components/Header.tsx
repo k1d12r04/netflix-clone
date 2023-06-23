@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { BellIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid';
+import { UserCircleIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
@@ -47,13 +48,7 @@ const Header = () => {
         <p className="hidden lg:inline">Kids</p>
         <BellIcon className="h-6 w-6" />
         <Link className="inline-block " href="/account">
-          <Image
-            src="/Netflix-avatar.png"
-            alt="Netflix profile avatar"
-            width={32}
-            height={32}
-            className="cursor-pointer rounded"
-          />
+          <UserCircleIcon className="h-8 w-8 transition-all hover:text-slate-300" />
         </Link>
       </div>
     </header>
