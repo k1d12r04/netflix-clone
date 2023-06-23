@@ -23,7 +23,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={`${isScrolled && 'bg-[#141414]'}`}>
+    <header className={` ${isScrolled ? 'bg-[#141414]' : 'bg-stone-950/50'}`}>
       <div className="flex items-center space-x-2 md:space-x-10">
         <Image
           src="/netflix-logo.svg"
@@ -33,7 +33,7 @@ const Header = () => {
           className="cursor-pointer object-contain"
         />
 
-        <ul className="hidden md:flex space-x-4">
+        <ul className="hidden space-x-4 md:flex">
           <li className="headerLink">Home</li>
           <li className="headerLink">TV Shows</li>
           <li className="headerLink">Movies</li>
@@ -43,9 +43,9 @@ const Header = () => {
       </div>
 
       <div className="flex items-center space-x-4 text-sm font-light">
-        <MagnifyingGlassIcon className="hidden sm:inline w-6 h-6 " />
+        <MagnifyingGlassIcon className="hidden h-6 w-6 sm:inline " />
         <p className="hidden lg:inline">Kids</p>
-        <BellIcon className="w-6 h-6" />
+        <BellIcon className="h-6 w-6" />
         <Link className="inline-block " href="/account">
           <Image
             src="/Netflix-avatar.png"
