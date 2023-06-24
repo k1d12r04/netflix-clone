@@ -32,6 +32,7 @@ const Header = () => {
           width={100}
           height={100}
           className="cursor-pointer object-contain"
+          priority
         />
 
         <ul className="hidden space-x-4 md:flex">

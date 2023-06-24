@@ -16,8 +16,8 @@ const Thumbnail = ({ movie }: Props) => {
         className="rounded-sm object-cover md:rounded"
         width={0}
         height={0}
-        fill
         sizes="100vw"
+        fill
       />
     </div>
   );

@@ -19,7 +19,7 @@ const Banner = ({ netflixOriginals }: Props) => {
   }, [netflixOriginals]);
 
   return (
-    <div className="flex flex-col space-y-10 py-16 md:h-screen md:justify-center md:space-y-14 lg:justify-end">
+    <div className="flex flex-col space-y-10 py-10 md:h-screen md:justify-center md:space-y-14 md:py-16 lg:justify-end">
       <div className="absolute left-0 top-0 -z-10 h-[95vh] w-full ">
         <Image
           src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`}
