@@ -1,5 +1,6 @@
 import Banner from '@/components/Banner';
 import Header from '@/components/Header';
+import Row from '@/components/Row';
 import { Movie } from '@/typing';
 import requests from '@/utils/requests';
 import Head from 'next/head';
@@ -37,12 +38,14 @@ const Home = ({
       <main className="px-4 lg:space-y-24 lg:px-8">
         <Banner netflixOriginals={netflixOriginals} />
         <section>
-          {/* Row */}
-          {/* Row */}
-          {/* Row */}
-          {/* Row */}
-          {/* Row */}
-          {/* Row */}
+          <Row title="Trending  Now" movies={trendingNow} />
+          <Row title="Top Rated" movies={topRated} />
+          <Row title="Action Thrillers" movies={actionMovies} />
+          {/* My List Component */}
+          <Row title="Comedies" movies={comedyMovies} />
+          <Row title="Scary Movies" movies={horrorMovies} />
+          <Row title="Romance Movies" movies={romanceMovies} />
+          <Row title="Documentaries" movies={documentaries} />
         </section>
       </main>
       {/* Modal */}
