@@ -9,8 +9,8 @@ interface Props {
 
 const Row = ({ title, movies }: Props) => {
   return (
-    <div className="h-40 space-y-0.5 md:mb-4 md:space-y-2">
-      <h1 className="w-56 cursor-pointer text-sm font-semibold text-[#e5e5e5] transition duration-200 hover:text-white md:text-2xl ">
+    <div className="flex h-40 flex-col justify-center space-y-1 md:mb-4 md:h-48 md:space-y-2 lg:mb-6 lg:space-y-4 ">
+      <h1 className="text-md w-56 cursor-pointer font-semibold text-[#e5e5e5] transition duration-200 hover:text-white md:text-2xl ">
         {title}
       </h1>
       <div className="group relative ">
