@@ -62,7 +62,7 @@ const Banner = ({ netflixOriginals }: Props) => {
               (loading && (
                 <Skeleton style={{ width: '70%', height: '15px' }} count={5} />
               )) ||
-              'Movie description not found. Please refresh the page to try to fix the problem.'}
+              'Movie description not found.'}
           </p>
         </div>
 
