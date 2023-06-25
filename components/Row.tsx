@@ -1,7 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import { Movie } from '../typing';
 import Thumbnail from './Thumbnail';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 interface Props {
   title: string;
@@ -10,19 +10,35 @@ interface Props {
 
 const Row = ({ title, movies }: Props) => {
   const rowRef = useRef<HTMLDivElement>(null);
+  const [isScrollLeftZero, setIsScrollLeftZero] = useState(true);
 
   const scrollRight = () => {
     rowRef.current?.scrollBy({
-      left: rowRef.current?.clientWidth,
+      left: rowRef.current.clientWidth,
       behavior: 'smooth',
     });
   };
 
   const scrollLeft = () => {
     rowRef.current?.scrollBy({
-      left: -rowRef.current?.clientWidth,
+      left: -rowRef.current.clientWidth,
       behavior: 'smooth',
     });
+  };
+
+  const handleScroll = () => {
+    const scrollLeft = rowRef.current?.scrollLeft;
+
+    if (scrollLeft === 0) {
+      setIsScrollLeftZero(true);
+    } else {
+      setIsScrollLeftZero(false);
+    }
+
+    // const prevIcon = row.parentNode.getElementsByClassName('prev-icon')[0];
+    // if (prevIcon) {
+    //   prevIcon.style.visibility = scrollLeft === 0 ? 'hidden' : 'visible';
+    // }
   };
 
   return (
@@ -32,13 +48,16 @@ const Row = ({ title, movies }: Props) => {
       </h1>
       <div className="group relative ">
         <ChevronLeftIcon
-          className={`absolute bottom-0 left-2 top-0 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition group-hover:opacity-100 hover:scale-125 `}
+          className={`prev-icon absolute bottom-0 left-2 top-0 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition group-hover:opacity-100 hover:scale-125 ${
+            isScrollLeftZero ? 'hidden' : 'visible'
+          } `}
           onClick={scrollLeft}
         />
 
         <div
           ref={rowRef}
-          className="flex items-center space-x-1 overflow-x-scroll scrollbar-hide md:space-x-2.5  "
+          className="flex items-center space-x-1 overflow-x-scroll scrollbar-hide md:space-x-2.5"
+          onScroll={handleScroll}
         >
           {movies.map(movie => (
             <Thumbnail key={movie.id} movie={movie} />
