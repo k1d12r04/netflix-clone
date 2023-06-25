@@ -34,11 +34,6 @@ const Row = ({ title, movies }: Props) => {
     } else {
       setIsScrollLeftZero(false);
     }
-
-    // const prevIcon = row.parentNode.getElementsByClassName('prev-icon')[0];
-    // if (prevIcon) {
-    //   prevIcon.style.visibility = scrollLeft === 0 ? 'hidden' : 'visible';
-    // }
   };
 
   return (
@@ -48,7 +43,7 @@ const Row = ({ title, movies }: Props) => {
       </h1>
       <div className="group relative ">
         <ChevronLeftIcon
-          className={`prev-icon absolute bottom-0 left-2 top-0 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition group-hover:opacity-100 hover:scale-125 ${
+          className={`absolute bottom-0 left-2 top-0 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition group-hover:opacity-100 hover:scale-125 ${
             isScrollLeftZero ? 'hidden' : 'visible'
           } `}
           onClick={scrollLeft}
