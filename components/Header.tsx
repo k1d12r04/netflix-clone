@@ -46,7 +46,7 @@ const Header = () => {
 
       <div className="flex items-center space-x-4 text-sm font-light">
         <MagnifyingGlassIcon className="hidden h-6 w-6 sm:inline " />
-        <p className="hidden lg:inline">Kids</p>
+        <p className="hidden first-letter:capitalize lg:inline ">Kids</p>
         <BellIcon className="h-6 w-6" />
         <Link className="inline-block " href="/account">
           <UserCircleIcon className="h-8 w-8 transition-all hover:text-slate-300" />
