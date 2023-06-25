@@ -43,8 +43,8 @@ const Row = ({ title, movies }: Props) => {
       </h1>
       <div className="group relative ">
         <ChevronLeftIcon
-          className={`absolute bottom-0 left-2 top-0 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition group-hover:opacity-100 hover:scale-125 ${
-            isScrollLeftZero ? 'hidden' : 'visible'
+          className={`absolute bottom-0 left-2 top-0 z-40 m-auto hidden h-9 w-9 cursor-pointer opacity-0 transition group-hover:opacity-100 hover:scale-125 lg:${
+            isScrollLeftZero ? 'hidden' : 'block'
           } `}
           onClick={scrollLeft}
         />
@@ -60,7 +60,7 @@ const Row = ({ title, movies }: Props) => {
         </div>
 
         <ChevronRightIcon
-          className="absolute bottom-0 right-2 top-0 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition group-hover:opacity-100 hover:scale-125"
+          className="absolute bottom-0 right-2 top-0 z-40 m-auto hidden h-9 w-9 cursor-pointer opacity-0 transition group-hover:opacity-100 hover:scale-125 lg:block"
           onClick={scrollRight}
         />
       </div>
