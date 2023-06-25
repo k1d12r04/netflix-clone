@@ -17,7 +17,7 @@ const Banner = ({ netflixOriginals }: Props) => {
 
   const timeout: ReturnType<typeof setTimeout> = setTimeout(() => {
     setLoading(false);
-  }, 2000);
+  }, 1000);
 
   useEffect(() => {
     setMovie(
@@ -29,7 +29,7 @@ const Banner = ({ netflixOriginals }: Props) => {
     <SkeletonTheme baseColor="#202020" highlightColor="#444">
       <div className="flex flex-col space-y-10 py-10 md:h-screen md:justify-center md:space-y-14 md:py-16 lg:justify-end">
         <div className="absolute left-0 top-0 -z-10 h-[95vh] w-full ">
-          {(
+          {(loading && <Skeleton width="100%" height="100%" />) || (
             <Image
               src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`}
               alt="movie poster"
@@ -42,7 +42,7 @@ const Banner = ({ netflixOriginals }: Props) => {
                 objectPosition: '50% 20%',
               }}
             />
-          ) || <Skeleton />}
+          )}
         </div>
 
         <div
@@ -62,7 +62,7 @@ const Banner = ({ netflixOriginals }: Props) => {
               (loading && (
                 <Skeleton style={{ width: '70%', height: '15px' }} count={5} />
               )) ||
-              'Movie description will be added as soon as possible.'}
+              'Movie description not found. Please refresh the page to try to fix the problem.'}
           </p>
         </div>
 
