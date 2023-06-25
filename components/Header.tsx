@@ -25,7 +25,9 @@ const Header = () => {
 
   return (
     <header
-      className={` max-h-20 ${isScrolled ? 'bg-[#141414]' : 'bg-stone-950/50'}`}
+      className={` h-[76px] max-h-[76px] ${
+        isScrolled ? 'bg-[#141414]' : 'bg-stone-950/50'
+      }`}
     >
       <div className="flex items-center space-x-2 md:space-x-10">
         <Image
