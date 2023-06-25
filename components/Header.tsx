@@ -24,7 +24,9 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={` ${isScrolled ? 'bg-[#141414]' : 'bg-stone-950/50'}`}>
+    <header
+      className={` max-h-20 ${isScrolled ? 'bg-[#141414]' : 'bg-stone-950/50'}`}
+    >
       <div className="flex items-center space-x-2 md:space-x-10">
         <Image
           src="/netflix-logo.svg"
