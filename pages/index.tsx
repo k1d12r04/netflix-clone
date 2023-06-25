@@ -39,7 +39,7 @@ const Home = ({
         <Banner netflixOriginals={netflixOriginals} />
         <section className="!my-6">
           <Row title="Trending  Now" movies={trendingNow} />
-          <Row title="Top Rated" movies={topRated} />
+          <Row title="Top Loved" movies={topRated} />
           <Row title="Action Thrillers" movies={actionMovies} />
           {/* My List Component */}
           <Row title="Comedies" movies={comedyMovies} />
