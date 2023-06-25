@@ -17,7 +17,7 @@ const Banner = ({ netflixOriginals }: Props) => {
 
   const timeout: ReturnType<typeof setTimeout> = setTimeout(() => {
     setLoading(false);
-  }, 1000);
+  }, 1500);
 
   useEffect(() => {
     setMovie(
@@ -52,12 +52,12 @@ const Banner = ({ netflixOriginals }: Props) => {
           }}
           className="rounded-xl bg-stone-950/40 p-2 lg:p-4"
         >
-          <h1 className="text-2xl font-[400] md:mb-4 md:text-4xl lg:text-7xl first-letter:capitalize ">
+          <h1 className="text-2xl font-[400] first-letter:capitalize md:mb-4 md:text-4xl lg:text-7xl ">
             {movie?.title || movie?.name || movie?.original_name || (
               <Skeleton style={{ width: '40%', height: '24px' }} count={1} />
             )}
           </h1>
-          <p className="max-w-md text-sm font-[300] md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl first-letter:capitalize ">
+          <p className="max-w-md text-sm font-[300] first-letter:capitalize md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl ">
             {movie?.overview ||
               (loading && (
                 <Skeleton style={{ width: '70%', height: '15px' }} count={5} />
