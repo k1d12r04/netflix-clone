@@ -1,7 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import { Movie } from '../typing';
 import Thumbnail from './Thumbnail';
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react';
 
 interface Props {
   title: string;
@@ -10,20 +10,19 @@ interface Props {
 
 const Row = ({ title, movies }: Props) => {
   const rowRef = useRef<HTMLDivElement>(null);
-  const [isMoved, setIsMoved] = useState(false);
 
-  const handleClick = (direction: string) => {
-    if (rowRef.current) {
-      setIsMoved(true);
-      const { scrollLeft, clientWidth } = rowRef.current;
+  const scrollRight = () => {
+    rowRef.current?.scrollBy({
+      left: rowRef.current?.clientWidth,
+      behavior: 'smooth',
+    });
+  };
 
-      const scrollTo =
-        direction === 'left'
-          ? scrollLeft - clientWidth
-          : scrollLeft + clientWidth;
-
-      rowRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
-    }
+  const scrollLeft = () => {
+    rowRef.current?.scrollBy({
+      left: -rowRef.current?.clientWidth,
+      behavior: 'smooth',
+    });
   };
 
   return (
@@ -33,10 +32,8 @@ const Row = ({ title, movies }: Props) => {
       </h1>
       <div className="group relative ">
         <ChevronLeftIcon
-          className={`absolute bottom-0 left-2 top-0 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition group-hover:opacity-100 hover:scale-125 ${
-            isMoved === false ? 'hidden' : 'block'
-          } `}
-          onClick={() => handleClick('left')}
+          className={`absolute bottom-0 left-2 top-0 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition group-hover:opacity-100 hover:scale-125 `}
+          onClick={scrollLeft}
         />
 
         <div
@@ -50,7 +47,7 @@ const Row = ({ title, movies }: Props) => {
 
         <ChevronRightIcon
           className="absolute bottom-0 right-2 top-0 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition group-hover:opacity-100 hover:scale-125"
-          onClick={() => handleClick('right')}
+          onClick={scrollRight}
         />
       </div>
     </div>

@@ -40,7 +40,7 @@ const Banner = ({ netflixOriginals }: Props) => {
           boxShadow:
             'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px',
         }}
-        className="rounded-xl bg-stone-950/40 p-2"
+        className="rounded-xl bg-stone-950/40 p-2 lg:p-4"
       >
         <h1 className="text-2xl font-[400] md:mb-4 md:text-4xl lg:text-7xl ">
           {movie?.title || movie?.name || movie?.original_name}
