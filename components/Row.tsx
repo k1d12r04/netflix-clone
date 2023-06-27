@@ -1,7 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import { Movie } from '../typing';
 import Thumbnail from './Thumbnail';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface Props {
   title: string;
@@ -10,30 +10,30 @@ interface Props {
 
 const Row = ({ title, movies }: Props) => {
   const rowRef = useRef<HTMLDivElement>(null);
-  const [isScrollLeftZero, setIsScrollLeftZero] = useState(true);
+  const [showLeftIcon, setShowLeftIcon] = useState(false);
+  const [showRightIcon, setShowRightIcon] = useState(true);
 
   const scrollRight = () => {
     rowRef.current?.scrollBy({
-      left: rowRef.current.clientWidth,
+      left: rowRef.current.clientWidth / 1.7,
       behavior: 'smooth',
     });
+    setShowRightIcon(true);
   };
 
   const scrollLeft = () => {
     rowRef.current?.scrollBy({
-      left: -rowRef.current.clientWidth,
+      left: -rowRef.current.clientWidth / 1.7,
       behavior: 'smooth',
     });
+    setShowLeftIcon(true);
   };
 
   const handleScroll = () => {
-    const scrollLeft = rowRef.current?.scrollLeft;
-
-    if (scrollLeft === 0) {
-      setIsScrollLeftZero(true);
-    } else {
-      setIsScrollLeftZero(false);
-    }
+    const { scrollLeft, scrollWidth, clientWidth }: any = rowRef?.current;
+    console.log(scrollLeft, scrollWidth, clientWidth);
+    setShowLeftIcon(scrollLeft > 0);
+    setShowRightIcon(scrollLeft + clientWidth < scrollWidth);
   };
 
   return (
@@ -42,12 +42,12 @@ const Row = ({ title, movies }: Props) => {
         {title}
       </h1>
       <div className="group relative ">
-        <ChevronLeftIcon
-          className={`absolute bottom-0 left-2 top-0 z-40 m-auto hidden h-9 w-9 cursor-pointer opacity-0 transition group-hover:opacity-100 hover:scale-125 lg:${
-            isScrollLeftZero ? 'hidden' : 'block'
-          } `}
-          onClick={scrollLeft}
-        />
+        {showLeftIcon && (
+          <ChevronLeftIcon
+            className="absolute bottom-0 left-2 top-0 z-40 m-auto hidden h-9 w-9 cursor-pointer opacity-0 transition group-hover:opacity-100 hover:scale-125 lg:block"
+            onClick={scrollLeft}
+          />
+        )}
 
         <div
           ref={rowRef}
@@ -59,10 +59,12 @@ const Row = ({ title, movies }: Props) => {
           ))}
         </div>
 
-        <ChevronRightIcon
-          className="absolute bottom-0 right-2 top-0 z-40 m-auto hidden h-9 w-9 cursor-pointer opacity-0 transition group-hover:opacity-100 hover:scale-125 lg:block"
-          onClick={scrollRight}
-        />
+        {showRightIcon && (
+          <ChevronRightIcon
+            className="absolute bottom-0 right-2 top-0 z-40 m-auto hidden h-9 w-9 cursor-pointer opacity-0 transition group-hover:opacity-100 hover:scale-125 lg:block"
+            onClick={scrollRight}
+          />
+        )}
       </div>
     </div>
   );
