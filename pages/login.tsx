@@ -1,8 +1,24 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
+import { useState } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+
+interface Inputs {
+  email: string;
+  password: string;
+}
 
 const Login = () => {
+  const [login, setLogin] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
+
   return (
     <div className="relative flex h-screen w-screen flex-col items-center justify-center bg-black sm:bg-transparent">
       <Head>
@@ -26,16 +42,39 @@ const Login = () => {
         priority
       />
 
-      <form className="max-w-md space-y-4 rounded bg-black/75 px-6 py-10 md:px-14">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="max-w-md space-y-4 rounded bg-black/75 px-6 py-10 md:px-14"
+      >
         <h1 className="text-3xl font-semibold tracking-wide text-white md:text-4xl">
           Sign In
         </h1>
         <div className="space-y-4">
           <label htmlFor="email" className="inline-block w-full">
-            <input type="email" placeholder="Email" className="input" />
+            <input
+              type="email"
+              placeholder="Email"
+              className="input"
+              {...register('email', { required: true })}
+            />
+            {errors.email && (
+              <span className="text-red-600 font-light text-sm inline-block ml-1 mt-2">
+                Email is required!
+              </span>
+            )}
           </label>
           <label htmlFor="password" className="inline-block w-full">
-            <input type="password" placeholder="Password" className="input" />
+            <input
+              type="password"
+              placeholder="Password"
+              className="input"
+              {...register('password', { required: true, minLength: 4 })}
+            />
+            {errors.password && (
+              <span className="text-red-600 font-light text-sm inline-block ml-1 mt-2">
+                At least 4 characters are required!
+              </span>
+            )}
           </label>
         </div>
 
