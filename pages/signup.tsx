@@ -10,8 +10,8 @@ interface Inputs {
   password: string;
 }
 
-const Login = () => {
-  const { signIn } = useAuth();
+const Signup = () => {
+  const { signUp } = useAuth();
   const router = useRouter();
 
   const {
@@ -20,7 +20,7 @@ const Login = () => {
     formState: { errors },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
-    await signIn(email, password);
+    await signUp(email, password);
   };
 
   return (
@@ -51,7 +51,7 @@ const Login = () => {
         className="max-w-md space-y-4 rounded bg-black/75 px-6 py-10 md:px-14"
       >
         <h1 className="text-3xl font-semibold tracking-wide text-white md:text-4xl">
-          Sign In
+          Sign Up
         </h1>
         <div className="space-y-4">
           <label htmlFor="email" className="inline-block w-full">
@@ -86,16 +86,16 @@ const Login = () => {
           type="submit"
           className="w-full rounded bg-[#e50914] py-3 font-semibold tracking-wide hover:opacity-90 transition"
         >
-          Sign in
+          Sign up
         </button>
 
         <div className="text-white/70">
-          New to Netflix ?
+          Already have an account ?
           <button
-            onClick={() => router.push('/signup')}
+            onClick={() => router.push('/login')}
             className="ml-2 text-white hover:underline group"
           >
-            Sign up now
+            Sign in now
             <ArrowRightIcon className="inline h-6 w-6 ml-2 text-white align-top group-hover:ml-3 transition-all ease-in-out duration-300" />
           </button>
         </div>
@@ -104,4 +104,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
