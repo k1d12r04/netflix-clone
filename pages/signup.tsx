@@ -92,6 +92,7 @@ const Signup = () => {
         <div className="text-white/70">
           Already have an account ?
           <button
+            type="button"
             onClick={() => router.push('/login')}
             className="ml-2 text-white hover:underline group"
           >

@@ -92,6 +92,7 @@ const Login = () => {
         <div className="text-white/70">
           New to Netflix ?
           <button
+            type="button"
             onClick={() => router.push('/signup')}
             className="ml-2 text-white hover:underline group"
           >
