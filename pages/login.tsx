@@ -17,7 +17,13 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
+    if (login) {
+      // await signIn(email, password);
+    } else {
+      // await signUp(email, password);
+    }
+  };
 
   return (
     <div className="relative flex h-screen w-screen flex-col items-center justify-center bg-black sm:bg-transparent">
@@ -79,6 +85,7 @@ const Login = () => {
         </div>
 
         <button
+          onClick={() => setLogin(true)}
           type="submit"
           className="w-full rounded bg-[#e50914] py-3 font-semibold tracking-wide hover:opacity-90 transition"
         >
@@ -87,7 +94,10 @@ const Login = () => {
 
         <div className="text-white/70">
           New to Netflix ?
-          <button className="ml-2 text-white hover:underline group">
+          <button
+            onClick={() => setLogin(false)}
+            className="ml-2 text-white hover:underline group"
+          >
             Sign up now
             <ArrowRightIcon className="inline h-6 w-6 ml-2 text-white align-top group-hover:ml-3 transition-all ease-in-out duration-300" />
           </button>
