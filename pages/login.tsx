@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import useAuth from '@/hooks/useAuth';
 
 interface Inputs {
   email: string;
@@ -11,6 +12,7 @@ interface Inputs {
 
 const Login = () => {
   const [login, setLogin] = useState(false);
+  const { signIn, signUp } = useAuth();
 
   const {
     register,
@@ -19,9 +21,9 @@ const Login = () => {
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
     if (login) {
-      // await signIn(email, password);
+      await signIn(email, password);
     } else {
-      // await signUp(email, password);
+      await signUp(email, password);
     }
   };
 

@@ -3,13 +3,12 @@ import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBuu0YHXOcgmqWLZl-fiMn6lG2wUhdPg8k',
-  authDomain: 'next-firebase-stripe-39bf8.firebaseapp.com',
-  databaseURL: 'https://next-firebase-stripe-39bf8-default-rtdb.firebaseio.com',
-  projectId: 'next-firebase-stripe-39bf8',
-  storageBucket: 'next-firebase-stripe-39bf8.appspot.com',
-  messagingSenderId: '777709922250',
-  appId: '1:777709922250:web:4500ee09dca93e1406d133',
+  apiKey: 'AIzaSyBcO8Iko0JuEquGq05SMfO64LrLMj-SNaA',
+  authDomain: 'nextflix-app-a64a1.firebaseapp.com',
+  projectId: 'nextflix-app-a64a1',
+  storageBucket: 'nextflix-app-a64a1.appspot.com',
+  messagingSenderId: '434608591598',
+  appId: '1:434608591598:web:e2118133d731e706ead9ff',
 };
 // Initialize Firebase
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
