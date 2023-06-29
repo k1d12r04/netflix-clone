@@ -4,12 +4,14 @@ import {
   signInWithEmailAndPassword,
   signOut,
   User,
+  AuthErrorCodes,
 } from 'firebase/auth';
 
 import { useRouter } from 'next/router';
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { auth } from '../firebase';
-import { error } from 'console';
+import { toast } from 'react-toastify';
+import { FirebaseError } from 'firebase/app';
 
 interface IAuth {
   user: User | null;
@@ -56,30 +58,114 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       [auth];
   });
 
+  const getSignUpErrorMessage = (errorCode: string): string => {
+    switch (errorCode) {
+      case 'auth/email-already-in-use':
+        return 'The email address is already in use. Please use a different email.';
+      case 'auth/invalid-email':
+        return 'The email address is invalid. Please enter a valid email address.';
+      // Add more cases for other Firebase error codes, if needed
+      default:
+        return 'An unknown error occurred. Please try again later.';
+    }
+  };
+
   const signUp = async (email: string, password: string) => {
     setLoading(true);
 
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then(userCredential => {
-        setUser(userCredential.user);
-        router.push('/login');
-        setLoading(false);
-      })
-      .catch(error => alert(error.message))
-      .finally(() => setLoading(false));
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      setUser(userCredential.user);
+      router.push('/login');
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        const errorCode = error.code;
+        const errorMessage = getSignUpErrorMessage(errorCode);
+        toast.error(errorMessage, {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      } else {
+        toast.error('An unknown error occurred. Please try again later.', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getSignInErrorMessage = (errorCode: string): string => {
+    switch (errorCode) {
+      case 'auth/invalid-email':
+        return 'The email address is invalid. Please enter a valid email address.';
+      case 'auth/user-not-found':
+        return 'User does not exist. Please enter the correct email address.';
+      case 'auth/wrong-password':
+        return 'The password is incorrect. Please enter the correct password.';
+      // Add more cases for other Firebase sign-in error codes, if needed
+      default:
+        return 'An unknown error occurred. Please try again later.';
+    }
   };
 
   const signIn = async (email: string, password: string) => {
     setLoading(true);
 
-    await signInWithEmailAndPassword(auth, email, password)
-      .then(userCredential => {
-        setUser(userCredential.user);
-        router.push('/');
-        setLoading(false);
-      })
-      .catch(error => alert(error.message))
-      .finally(() => setLoading(false));
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      setUser(userCredential.user);
+      router.push('/');
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        const errorCode = error.code;
+        const errorMessage = getSignInErrorMessage(errorCode);
+        toast.error(errorMessage, {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      } else {
+        toast.error('An unknown error occurred. Please try again later.', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   const logout = async () => {
@@ -89,7 +175,18 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       .then(() => {
         setUser(null);
       })
-      .catch(error => alert(error.message))
+      .catch(error =>
+        toast.error(error.message, {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        })
+      )
       .finally(() => setLoading(false));
   };
 

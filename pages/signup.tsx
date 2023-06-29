@@ -4,6 +4,8 @@ import { ArrowRightIcon } from '@heroicons/react/24/solid';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import useAuth from '@/hooks/useAuth';
 import { useRouter } from 'next/router';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Inputs {
   email: string;
@@ -29,6 +31,8 @@ const Signup = () => {
         <title>Netflix</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <ToastContainer />
 
       <Image
         src="https://rb.gy/p2hphi"
