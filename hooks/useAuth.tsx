@@ -41,9 +41,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const router = useRouter();
   const [error, setError] = useState(null);
   const [initialLoading, setInitialLoading] = useState(true);
+  const [calledPush, setCalledPush] = useState(false);
 
   useEffect(() => {
     onAuthStateChanged(auth, user => {
+      if (calledPush) {
+        return;
+      }
+
       if (user) {
         setUser(user);
         setLoading(false);
@@ -51,9 +56,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         setUser(null);
         setLoading(true);
         router.push('/login');
+        setCalledPush(true);
       }
-
       setInitialLoading(false);
+      setLoading(false);
     }),
       [auth];
   });
