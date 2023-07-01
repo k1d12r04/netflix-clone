@@ -6,6 +6,8 @@ import { FaPlay } from 'react-icons/fa';
 import { InformationCircleIcon } from '@heroicons/react/24/solid';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import { modalState, movieState } from '@/atoms/modalAtom';
+import { useRecoilState } from 'recoil';
 
 interface Props {
   netflixOriginals: Movie[];
@@ -24,6 +26,9 @@ const Banner = ({ netflixOriginals }: Props) => {
       netflixOriginals[Math.floor(Math.random() * netflixOriginals?.length)]
     );
   }, [netflixOriginals]);
+
+  const [showModal, setShowModal] = useRecoilState(modalState);
+  const [currentMovie, setCurrentMovie] = useRecoilState(movieState);
 
   return (
     <SkeletonTheme baseColor="#202020" highlightColor="#444">
@@ -76,7 +81,13 @@ const Banner = ({ netflixOriginals }: Props) => {
           <button className="bannerButton  bg-white text-black">
             <FaPlay className="h-4 w-4 text-black md:h-7 md:w-7" /> Play
           </button>
-          <button className="bannerButton  bg-red-700 text-white">
+          <button
+            onClick={() => {
+              setCurrentMovie(movie);
+              setShowModal(true);
+            }}
+            className="bannerButton  bg-red-700 text-white"
+          >
             More info{' '}
             <InformationCircleIcon className="h-5 w-5 md:h-8 md:w-8" />
           </button>
