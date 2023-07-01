@@ -100,7 +100,7 @@ const Signup = () => {
             onClick={() => router.push('/login')}
             className="ml-2 text-white hover:underline group"
           >
-            Sign in now
+            Login now
             <ArrowRightIcon className="inline h-6 w-6 ml-2 text-white align-top group-hover:ml-3 transition-all ease-in-out duration-300" />
           </button>
         </div>

@@ -56,7 +56,7 @@ const Login = () => {
         className="max-w-md space-y-4 rounded bg-black/75 px-6 py-10 md:px-14"
       >
         <h1 className="text-3xl font-semibold tracking-wide text-white md:text-4xl">
-          Sign In
+          Login
         </h1>
         <div className="space-y-4">
           <label htmlFor="email" className="inline-block w-full">
@@ -117,7 +117,7 @@ const Login = () => {
             type="submit"
             className="w-full rounded bg-[#e50914] py-3 font-semibold tracking-wide hover:opacity-90 transition"
           >
-            Sign in
+            Login
           </button>
         )}
 
