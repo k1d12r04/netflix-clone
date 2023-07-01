@@ -31,7 +31,6 @@ const Row = ({ title, movies }: Props) => {
 
   const handleScroll = () => {
     const { scrollLeft, scrollWidth, clientWidth }: any = rowRef?.current;
-    console.log(scrollLeft, scrollWidth, clientWidth);
     setShowLeftIcon(scrollLeft > 0);
     setShowRightIcon(scrollLeft + clientWidth < scrollWidth);
   };
