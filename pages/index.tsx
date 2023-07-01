@@ -1,9 +1,11 @@
+import { modalState } from '@/atoms/modalAtom';
 import Banner from '@/components/Banner';
 import Header from '@/components/Header';
 import Row from '@/components/Row';
 import { Movie } from '@/typing';
 import requests from '@/utils/requests';
 import Head from 'next/head';
+import { useRecoilValue } from 'recoil';
 
 interface Props {
   netflixOriginals: Movie[];
@@ -26,6 +28,8 @@ const Home = ({
   documentaries,
   romanceMovies,
 }: Props) => {
+  const showModal = useRecoilValue(modalState);
+
   return (
     <div className="relative h-screen bg-gradient-to-b lg:h-[140vh] ">
       <Head>
