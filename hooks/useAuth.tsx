@@ -166,6 +166,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           theme: 'light',
         });
       }
+      setLoading(false);
     }
   };
 
