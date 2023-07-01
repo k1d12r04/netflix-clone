@@ -51,15 +51,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
       if (user) {
         setUser(user);
-        setLoading(false);
       } else {
         setUser(null);
-        setLoading(true);
         router.push('/login');
         setCalledPush(true);
       }
       setInitialLoading(false);
-      setLoading(false);
     }),
       [auth];
   });
@@ -169,8 +166,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           theme: 'light',
         });
       }
-    } finally {
-      setLoading(false);
     }
   };
 
