@@ -7,7 +7,17 @@ export const modalState = atom({
   default: false,
 });
 
-export const movieState = atom<Movie | DocumentData | null>({
-  key: 'movieState',
+export const bannerMovieState = atom<Movie | DocumentData | null>({
+  key: 'bannerMovieState',
+  default: null,
+});
+
+export const selectedMovieState = atom<Movie | DocumentData | null>({
+  key: 'selectedMovieState',
+  default: null,
+});
+
+export const clickedMovieState = atom<string | null>({
+  key: 'clickedMovieState',
   default: null,
 });

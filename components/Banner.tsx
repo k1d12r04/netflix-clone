@@ -6,7 +6,11 @@ import { FaPlay } from 'react-icons/fa';
 import { InformationCircleIcon } from '@heroicons/react/24/solid';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import { modalState, movieState } from '@/atoms/modalAtom';
+import {
+  modalState,
+  bannerMovieState,
+  clickedMovieState,
+} from '@/atoms/modalAtom';
 import { useRecoilState } from 'recoil';
 
 interface Props {
@@ -16,6 +20,9 @@ interface Props {
 const Banner = ({ netflixOriginals }: Props) => {
   const [movie, setMovie] = useState<Movie | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useRecoilState(modalState);
+  const [currentMovie, setCurrentMovie] = useRecoilState(bannerMovieState);
+  const [clickedMovie, setClickedMovie] = useRecoilState(clickedMovieState);
 
   const timeout: ReturnType<typeof setTimeout> = setTimeout(() => {
     setLoading(false);
@@ -26,9 +33,6 @@ const Banner = ({ netflixOriginals }: Props) => {
       netflixOriginals[Math.floor(Math.random() * netflixOriginals?.length)]
     );
   }, [netflixOriginals]);
-
-  const [showModal, setShowModal] = useRecoilState(modalState);
-  const [currentMovie, setCurrentMovie] = useRecoilState(movieState);
 
   return (
     <SkeletonTheme baseColor="#202020" highlightColor="#444">
@@ -85,6 +89,7 @@ const Banner = ({ netflixOriginals }: Props) => {
             onClick={() => {
               setCurrentMovie(movie);
               setShowModal(true);
+              setClickedMovie('bannerMovie');
             }}
             className="bannerButton  bg-red-700 text-white"
           >
