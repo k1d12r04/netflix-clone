@@ -15,7 +15,7 @@ import MuiModal from '@mui/material/Modal';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player/lazy';
-import { Movie } from '@/typing';
+import { Movie, Genre } from '@/typing';
 
 const Modal = () => {
   const [showModal, setShowModal] = useRecoilState(modalState);
@@ -74,7 +74,9 @@ const Modal = () => {
     (videos && videos[0]);
 
   const genresArr: string[] = [];
-  data?.genres.map(item => genresArr.push(item?.name));
+  data?.genres.map((item: any) => genresArr.push(item?.name));
+
+  const voteAverage: any = data?.vote_average;
 
   return (
     <MuiModal
@@ -140,7 +142,7 @@ const Modal = () => {
         <div className="bg-[#141414] w-full md:max-w-[760px] p-6 text-md space-y-4">
           <p className="flex items-center">
             <span className="text-green-600 mr-2">
-              {Math.floor(data?.vote_average) * 10}% Match
+              {Math.floor(voteAverage) * 10}% Match
             </span>{' '}
             {data?.release_date || data?.first_air_date}
             <span className="ml-2 border border-[gray] p-[1px] text-gray-300 px-2 rounded-md text-xs ">
@@ -168,7 +170,7 @@ const Modal = () => {
               </p>
               <p>
                 <span className="text-gray-500">Votes average:</span>{' '}
-                {Math.floor(data?.vote_average)}/10
+                {Math.floor(voteAverage)}/10
               </p>
             </div>
           </div>
