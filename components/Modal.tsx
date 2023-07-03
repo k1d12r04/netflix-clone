@@ -53,21 +53,18 @@ const Modal = () => {
       item.name.indexOf('TRAILER') > -1
   );
 
+  console.log(data);
+  console.log(index);
+
   const trailer =
     videos?.find(
       (video: any) =>
-        video.name === 'Official Trailer' || video.name === 'Trailer'
+        video.name === 'Final Trailer' ||
+        video.name === 'Official Trailer' ||
+        video.name === 'Trailer'
     ) ||
     (videos && videos[index]) ||
     (videos && videos[0]);
-
-  console.log(data);
-
-  // console.log(
-  //   videos?.find((video: any) =>
-  //     videos?.findIndex(video.name.split(' ').includes('Trailer' || 'trailer'))
-  //   )
-  // );
 
   return (
     <MuiModal
