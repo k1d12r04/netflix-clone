@@ -22,6 +22,7 @@ export interface Movie {
   vote_count: number;
   results: string[];
   videos: results;
+  genres: Object[];
 }
 
 export interface Element {

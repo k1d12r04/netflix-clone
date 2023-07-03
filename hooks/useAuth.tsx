@@ -4,7 +4,6 @@ import {
   signInWithEmailAndPassword,
   signOut,
   User,
-  AuthErrorCodes,
 } from 'firebase/auth';
 
 import { useRouter } from 'next/router';
