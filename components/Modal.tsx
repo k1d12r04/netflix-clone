@@ -151,7 +151,7 @@ const Modal = () => {
           </p>
 
           <div className="grid gap-y-4 md:grid-cols-10 md:gap-x-8">
-            <p className="col-span-7 text-sm w-full md:w-[50ch] ">
+            <p className="col-span-7 text-sm lg:text-[16px] w-full md:w-[50ch] ">
               {data?.overview}
             </p>
             <div className="col-span-3 text-md space-y-2">
