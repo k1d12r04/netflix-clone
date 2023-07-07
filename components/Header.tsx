@@ -4,6 +4,7 @@ import { UserCircleIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import useAuth from '@/hooks/useAuth';
+import BasicMenu from './ui/BasicMenu';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,7 +41,7 @@ const Header = () => {
           className="cursor-pointer object-contain"
           priority
         />
-
+        <BasicMenu />
         <ul className="hidden space-x-4 md:flex">
           <li className="headerLink">Home</li>
           <li className="headerLink">TV Shows</li>
@@ -59,7 +60,7 @@ const Header = () => {
         </button>
         <MagnifyingGlassIcon className="hidden h-6 w-6 sm:inline " />
         <p className="hidden first-letter:capitalize lg:inline ">Kids</p>
-        <BellIcon className="h-6 w-6" />
+        <BellIcon className="h-6 w-6 hidden sm:block" />
         <Link className="inline-block " href="/account">
           <UserCircleIcon className="h-8 w-8 transition duration-300 hover:text-slate-300" />
         </Link>
