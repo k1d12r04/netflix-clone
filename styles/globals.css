@@ -5,6 +5,11 @@
 @tailwind utilities;
 
 @layer base {
+  html,
+  body {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-[#141414] font-Rubik text-white !scrollbar-thin !scrollbar-track-transparent !scrollbar-thumb-red-600 !scrollbar-thumb-rounded-lg;
   }
@@ -32,6 +37,9 @@
   }
 
   .menu .MuiMenu-list {
-    @apply p-0 w-[200px];
+    @apply p-1 w-[200px];
+  }
+  .menu .MuiMenuItem-root {
+    @apply p-3 rounded-sm;
   }
 }

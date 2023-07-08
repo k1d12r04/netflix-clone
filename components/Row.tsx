@@ -1,8 +1,8 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import { Movie } from '../typing';
 import Thumbnail from './Thumbnail';
-import { useRef, useState } from 'react';
-
+import { useRef, useState, useContext, useEffect } from 'react';
+import { ScrollContext, ScrollContextType } from '../ScrollContext';
 interface Props {
   title: string;
   movies: Movie[];
@@ -12,6 +12,22 @@ const Row = ({ title, movies }: Props) => {
   const rowRef = useRef<HTMLDivElement>(null);
   const [showLeftIcon, setShowLeftIcon] = useState(false);
   const [showRightIcon, setShowRightIcon] = useState(true);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const { registerScrollRef }: ScrollContextType = useContext(ScrollContext)!;
+
+  const getFirstWord = (title: string) => {
+    const trimmedTitle = title.trim();
+    const words = trimmedTitle.split(' ');
+    return words[0];
+  };
+
+  const firstWord = getFirstWord(title);
+
+  useEffect(() => {
+    if (registerScrollRef) {
+      registerScrollRef(firstWord, sectionRef);
+    }
+  }, [registerScrollRef, firstWord]);
 
   const scrollRight = () => {
     rowRef.current?.scrollBy({
@@ -36,7 +52,11 @@ const Row = ({ title, movies }: Props) => {
   };
 
   return (
-    <div className="flex h-40 flex-col justify-center space-y-1 md:mb-4 md:h-48 md:space-y-2 lg:mb-6 lg:space-y-4 ">
+    <div
+      ref={sectionRef}
+      id={firstWord}
+      className="flex h-40 flex-col justify-center space-y-1 md:mb-4 md:h-48 md:space-y-2 lg:mb-6 lg:space-y-4 "
+    >
       <h1 className="text-md cursor-pointer font-semibold text-[#e5e5e5] transition duration-200 first-letter:capitalize hover:text-white md:text-2xl ">
         {title}
       </h1>

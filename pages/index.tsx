@@ -7,6 +7,7 @@ import { Movie } from '@/typing';
 import requests from '@/utils/requests';
 import Head from 'next/head';
 import { useRecoilValue } from 'recoil';
+import { ScrollProvider } from '../ScrollContext';
 
 interface Props {
   netflixOriginals: Movie[];
@@ -32,29 +33,31 @@ const Home = ({
   const showModal = useRecoilValue(modalState);
 
   return (
-    <div className="relative h-screen bg-gradient-to-b lg:h-[140vh] ">
-      <Head>
-        <title>Netflix - Home</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <ScrollProvider>
+      <div className="relative h-screen bg-gradient-to-b lg:h-[140vh] ">
+        <Head>
+          <title>Netflix - Home</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-      <Header />
+        <Header />
 
-      <main className="px-4 lg:space-y-24 lg:px-8">
-        <Banner netflixOriginals={netflixOriginals} />
-        <section className="pb-6">
-          <Row title="Trending  Now" movies={trendingNow} />
-          <Row title="Top Loved" movies={topRated} />
-          <Row title="Action Thrillers" movies={actionMovies} />
-          {/* My List Component */}
-          <Row title="Comedies" movies={comedyMovies} />
-          <Row title="Scary Movies" movies={horrorMovies} />
-          <Row title="Romance Movies" movies={romanceMovies} />
-          <Row title="Documentaries" movies={documentaries} />
-        </section>
-      </main>
-      {showModal && <Modal />}
-    </div>
+        <main className="px-4 lg:space-y-24 lg:px-8">
+          <Banner netflixOriginals={netflixOriginals} />
+          <section className="pb-6">
+            <Row title="Trending  Now" movies={trendingNow} />
+            <Row title="Top Loved" movies={topRated} />
+            <Row title="Action Thrillers" movies={actionMovies} />
+            {/* My List Component */}
+            <Row title="Comedies" movies={comedyMovies} />
+            <Row title="Scary Movies" movies={horrorMovies} />
+            <Row title="Romance Movies" movies={romanceMovies} />
+            <Row title="Documentaries" movies={documentaries} />
+          </section>
+        </main>
+        {showModal && <Modal />}
+      </div>
+    </ScrollProvider>
   );
 };
 

@@ -2,13 +2,21 @@ import Image from 'next/image';
 import { BellIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { UserCircleIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import useAuth from '@/hooks/useAuth';
 import BasicMenu from './ui/BasicMenu';
+import { ScrollContext } from '../ScrollContext';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { logout } = useAuth();
+  const scrollContext = useContext(ScrollContext);
+
+  const handleLinkClick = (sectionId: string) => {
+    if (scrollContext) {
+      scrollContext.scrollToSection(sectionId, 80, 100);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,13 +50,51 @@ const Header = () => {
           priority
         />
         <BasicMenu />
-        <ul className="hidden space-x-4 md:flex">
-          <li className="headerLink">Home</li>
-          <li className="headerLink">TV Shows</li>
-          <li className="headerLink">Movies</li>
-          <li className="headerLink">New & Popular</li>
-          <li className="headerLink">My List</li>
-        </ul>
+        <nav className="hidden space-x-4 md:flex">
+          <a
+            onClick={() => handleLinkClick('Trending')}
+            href="#Trending"
+            className="headerLink"
+          >
+            Trending
+          </a>
+          <a
+            onClick={() => handleLinkClick('Top')}
+            href="#Top"
+            className="headerLink"
+          >
+            Top Loved
+          </a>
+          <a
+            onClick={() => handleLinkClick('Action')}
+            href="#Action"
+            className="headerLink"
+          >
+            Action
+          </a>
+          <a
+            onClick={() => handleLinkClick('Scary')}
+            href="#Scary"
+            className="headerLink"
+          >
+            Horror
+          </a>
+          <a
+            onClick={() => handleLinkClick('Comedies')}
+            href="#Comedies"
+            className="headerLink"
+          >
+            Comedy
+          </a>
+
+          <a
+            onClick={() => handleLinkClick('myList')}
+            href="#myList"
+            className="headerLink"
+          >
+            My List
+          </a>
+        </nav>
       </div>
 
       <div className="flex items-center space-x-4 text-sm font-light">
