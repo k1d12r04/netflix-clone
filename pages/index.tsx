@@ -28,7 +28,6 @@ const Home = ({
   comedyMovies,
   horrorMovies,
   documentaries,
-  romanceMovies,
 }: Props) => {
   const showModal = useRecoilValue(modalState);
 
@@ -51,7 +50,6 @@ const Home = ({
             {/* My List Component */}
             <Row title="Comedies" movies={comedyMovies} />
             <Row title="Scary Movies" movies={horrorMovies} />
-            <Row title="Romance Movies" movies={romanceMovies} />
             <Row title="Documentaries" movies={documentaries} />
           </section>
         </main>
@@ -71,7 +69,6 @@ export const getServerSideProps = async () => {
     actionMovies,
     comedyMovies,
     horrorMovies,
-    romanceMovies,
     documentaries,
   ] = await Promise.all([
     fetch(requests.fetchNetflixOriginals).then(res => res.json()),
@@ -80,7 +77,6 @@ export const getServerSideProps = async () => {
     fetch(requests.fetchActionMovies).then(res => res.json()),
     fetch(requests.fetchComedyMovies).then(res => res.json()),
     fetch(requests.fetchHorrorMovies).then(res => res.json()),
-    fetch(requests.fetchRomanceMovies).then(res => res.json()),
     fetch(requests.fetchDocumentaries).then(res => res.json()),
   ]);
   return {
@@ -91,7 +87,6 @@ export const getServerSideProps = async () => {
       actionMovies: actionMovies.results,
       comedyMovies: comedyMovies.results,
       horrorMovies: horrorMovies.results,
-      romanceMovies: romanceMovies.results,
       documentaries: documentaries.results,
     },
   };
